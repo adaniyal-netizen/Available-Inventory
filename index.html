@@ -4,54 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReturnFlow - In-Store Returns</title>
+    
+    <!-- Tailwind CSS (Styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .returned-card { opacity: 0.6; filter: grayscale(100%); background-color: #f3f4f6; }
+        .returned-card { 
+            opacity: 0.6; 
+            filter: grayscale(100%); 
+            background-color: #f3f4f6;
+        }
+        /* Custom scrollbar for modals */
+        .modal-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .modal-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen pb-12">
+<body class="bg-gray-50 min-h-screen pb-20">
+
+    <!-- Navbar -->
     <nav class="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 py-3 shadow-sm">
         <div class="max-w-md mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2 text-blue-600">
                 <i data-lucide="package-open" class="w-6 h-6"></i>
-                <h1 class="font-bold text-lg text-gray-900">ReturnFlow</h1>
+                <h1 class="font-bold text-lg text-gray-900 tracking-tight">ReturnFlow</h1>
             </div>
-            <span class="text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100">
-                4 Items Pending
-            </span>
+            
+            <div class="flex items-center gap-2">
+                <span id="status-badge" class="text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block">
+                    Loading...
+                </span>
+                <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition-colors" title="Add New Product">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-md mx-auto p-4 space-y-3" id="card-container"></main>
+    <!-- Filter Bar (New) -->
+    <div class="max-w-md mx-auto px-4 pt-4 pb-1">
+        <div class="flex p-1 bg-gray-200 rounded-lg">
+            <button onclick="setFilter('all')" id="filter-all" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all">All (0)</button>
+            <button onclick="setFilter('pending')" id="filter-pending" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">Pending (0)</button>
+            <button onclick="setFilter('returned')" id="filter-returned" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">Completed (0)</button>
+        </div>
+    </div>
 
-    <div id="modal" class="fixed inset-0 z-50 hidden">
-        <div class="fixed inset-0 bg-black/90 backdrop-blur-sm" onclick="closeModal()"></div>
+    <!-- Main Content Area -->
+    <main class="max-w-md mx-auto p-4 space-y-3" id="card-container">
+        <!-- Javascript will inject the return cards here -->
+    </main>
+    
+    <!-- Empty State (Hidden by default) -->
+    <div id="empty-state" class="hidden max-w-md mx-auto p-8 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+            <i data-lucide="clipboard-list" class="w-8 h-8 text-gray-400"></i>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900">No items found</h3>
+        <p class="text-gray-500 mt-1 mb-6">Add products or change filter.</p>
+        <button onclick="openAddModal()" class="text-blue-600 font-medium hover:text-blue-800">
+            + Add New Product
+        </button>
+    </div>
+
+    <!-- SCANNER MODAL -->
+    <div id="scan-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/90 backdrop-blur-sm transition-opacity" onclick="closeScanModal()"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
-            <div class="flex min-h-full items-center justify-center p-4">
-                <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-xl">
+            <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-xl text-left transform transition-all">
+                    
                     <div class="bg-blue-600 px-4 py-3 flex justify-between items-center text-white">
-                        <h3 class="font-semibold flex items-center gap-2"><i data-lucide="scan-barcode" class="w-5 h-5"></i> Scan Item</h3>
-                        <button onclick="closeModal()"><i data-lucide="x" class="w-6 h-6"></i></button>
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <i data-lucide="scan-barcode" class="w-5 h-5"></i> Scan Item
+                        </h3>
+                        <button onclick="closeScanModal()" class="hover:bg-blue-700 rounded p-1">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
                     </div>
-                    <div class="p-5 text-center">
-                        <h3 class="text-lg font-bold text-gray-900" id="modal-title">Product</h3>
-                        <p class="text-sm text-gray-500 mb-4" id="modal-sku">SKU</p>
-                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4 text-xs text-yellow-800 text-left flex gap-2">
-                            <i data-lucide="sun" class="w-4 h-4 flex-shrink-0"></i>
-                            <span>Turn brightness to 100% for scanning.</span>
+
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight" id="scan-title">Product Name</h3>
+                        <p class="text-sm text-gray-500 mb-4" id="scan-sku">SKU: 12345</p>
+
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4 flex gap-3">
+                            <i data-lucide="sun" class="w-5 h-5 text-yellow-600 flex-shrink-0"></i>
+                            <div class="text-xs text-yellow-800">
+                                <strong>Max Brightness Required</strong><br>
+                                Turn screen brightness to 100%.
+                            </div>
                         </div>
-                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-2 mb-4 flex justify-center h-40">
-                            <img id="modal-barcode-img" src="" class="max-h-full max-w-full object-contain">
+
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-2 mb-4 flex justify-center h-48 bg-white relative">
+                            <img id="scan-barcode-img" src="" alt="Barcode" class="h-full object-contain z-10">
+                            <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-xs z-0">No Barcode Image</div>
                         </div>
-                        <div class="flex justify-between items-center border-y border-gray-100 py-3 mb-4">
+
+                        <div class="flex justify-between items-center border-t border-b border-gray-100 py-3 mb-5">
                             <span class="text-gray-600 font-medium text-sm">Return Quantity</span>
-                            <span class="text-2xl font-bold text-red-600" id="modal-qty">0</span>
+                            <span class="text-2xl font-bold text-red-600" id="scan-qty">0</span>
                         </div>
-                        <button onclick="markCurrentAsReturned()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> Mark as Returned
+
+                        <button onclick="markCurrentAsReturned()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            Mark as Returned
                         </button>
                     </div>
                 </div>
@@ -59,63 +129,362 @@
         </div>
     </div>
 
-    <script>
-        // REPLACE THESE WITH YOUR EXACT IMAGE FILENAMES FROM GITHUB
-        const returnData = [
-            { id: 1, name: "Winona Pure Popcorn Spray", sku: "5 oz", qty: 24, orderId: "#7804", image: "https://placehold.co/150?text=Popcorn", barcode: "https://placehold.co/300x150?text=Barcode", status: "pending" },
-            { id: 2, name: "Neutrogena Hydro Boost", sku: "1.7 oz", qty: 7, orderId: "#0452", image: "https://placehold.co/150?text=Hydro+Boost", barcode: "https://placehold.co/300x150?text=Barcode", status: "pending" },
-            { id: 3, name: "Neutrogena Cleansing Gel", sku: "2% oz", qty: 6, orderId: "#2460", image: "https://placehold.co/150?text=Cleanser", barcode: "https://placehold.co/300x150?text=Barcode", status: "pending" },
-            { id: 4, name: "Herbal Essences Hairspray", sku: "2 Pack", qty: 2, orderId: "#9999", image: "https://placehold.co/150?text=Hairspray", barcode: "https://placehold.co/300x150?text=Barcode", status: "pending" }
-        ];
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeAddModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end sm:items-center justify-center sm:p-4 text-center">
+                <div class="bg-white w-full max-w-md sm:rounded-2xl rounded-t-2xl shadow-xl text-left transform transition-all h-[90vh] sm:h-auto flex flex-col">
+                    
+                    <div class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-gray-900">Add New Product</h3>
+                        <button onclick="closeAddModal()" class="text-gray-400 hover:text-gray-600">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
 
-        let currentActiveId = null;
+                    <div class="p-5 overflow-y-auto modal-scroll flex-1 space-y-4">
+                        
+                        <!-- Product Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                            <input type="text" id="input-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="e.g. Neutrogena Gel">
+                        </div>
 
-        function renderCards() {
-            const container = document.getElementById('card-container');
-            container.innerHTML = '';
-            returnData.forEach(item => {
-                const isReturned = item.status === 'returned';
-                const btnClass = isReturned ? 'bg-gray-200 text-gray-500' : 'bg-blue-600 text-white';
-                container.innerHTML += `
-                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex gap-4 ${isReturned ? 'returned-card' : ''}">
-                        <img src="${item.image}" class="w-20 h-20 bg-gray-100 rounded-lg object-cover">
-                        <div class="flex-1 flex flex-col justify-between">
+                        <!-- Grid for small inputs -->
+                        <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <h2 class="text-sm font-semibold text-gray-900 line-clamp-2">${item.name}</h2>
-                                <div class="text-xs text-gray-500 mt-1"><span class="bg-gray-100 px-1 rounded">${item.orderId}</span> ${item.sku}</div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                                <input type="number" id="input-qty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="1">
                             </div>
-                            <div class="flex justify-between items-end mt-2">
-                                <div><span class="text-[10px] uppercase font-bold text-gray-400">Qty</span> <span class="text-xl font-bold ${isReturned ? 'text-gray-500' : 'text-red-600'}">${item.qty}</span></div>
-                                <button onclick="openModal(${item.id})" ${isReturned ? 'disabled' : ''} class="px-4 py-2 rounded-lg text-sm font-semibold ${btnClass}">
-                                    ${isReturned ? 'Done' : 'Scan'}
-                                </button>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">SKU / Size</label>
+                                <input type="text" id="input-sku" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="1.7 oz">
                             </div>
                         </div>
-                    </div>`;
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Order ID</label>
+                            <input type="text" id="input-order" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="#1234">
+                        </div>
+
+                        <!-- Image URL Input -->
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Product Image (Address/URL)</label>
+                            <div class="flex gap-4">
+                                <div id="preview-product-container" class="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-200">
+                                    <i data-lucide="image" class="text-gray-400"></i>
+                                    <img id="preview-product" class="w-full h-full object-cover hidden" onerror="this.classList.add('hidden'); this.previousElementSibling.classList.remove('hidden');">
+                                </div>
+                                <div class="flex-1">
+                                    <input type="url" id="input-image-url" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none text-sm mb-1" placeholder="Paste image address here..." oninput="handleUrlPreview(this.value)">
+                                    <p class="text-xs text-gray-500">Right-click an image online and select "Copy Image Address"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Barcode Image (Important)</label>
+                            <div class="flex items-center gap-4">
+                                <div id="preview-barcode-container" class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
+                                    <i data-lucide="scan-barcode" class="text-gray-400"></i>
+                                    <img id="preview-barcode" class="w-full h-full object-cover hidden">
+                                </div>
+                                <input type="file" id="file-barcode" accept="image/*" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" onchange="handleFileSelect(this, 'preview-barcode')">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-5 border-t border-gray-100">
+                        <button onclick="saveNewProduct()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg active:scale-[0.98] transition-all">
+                            Save Product
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // --- STATE MANAGEMENT ---
+        let returnData = JSON.parse(localStorage.getItem('returnFlowData')) || [];
+        let currentFilter = 'all'; // 'all', 'pending', 'returned'
+        let currentActiveId = null;
+
+        // --- FILTER FUNCTIONALITY ---
+        function setFilter(filter) {
+            currentFilter = filter;
+            updateFilterUI();
+            renderCards();
+        }
+
+        function updateFilterUI() {
+            const buttons = ['all', 'pending', 'returned'];
+            buttons.forEach(btn => {
+                const el = document.getElementById(`filter-${btn}`);
+                if (btn === currentFilter) {
+                    el.className = 'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all';
+                } else {
+                    el.className = 'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all';
+                }
             });
+        }
+
+        // --- RENDER FUNCTIONS ---
+        function renderCards() {
+            // Update tab counts
+            updateTabCounts();
+
+            const container = document.getElementById('card-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            container.innerHTML = ''; // Clear existing
+
+            // Filter data based on current selection
+            let displayData = returnData;
+            if (currentFilter === 'pending') {
+                displayData = returnData.filter(item => item.status === 'pending');
+            } else if (currentFilter === 'returned') {
+                displayData = returnData.filter(item => item.status === 'returned');
+            }
+
+            if (displayData.length === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                updateHeaderStatus();
+                return;
+            }
+
+            container.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            displayData.forEach(item => {
+                const isReturned = item.status === 'returned';
+                
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex gap-4 transition-all relative group ${isReturned ? 'returned-card' : 'hover:border-blue-300'}`;
+                
+                // Fallback image logic
+                const imgSource = item.image || 'https://placehold.co/150?text=No+Img';
+
+                card.innerHTML = `
+                    <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100 relative">
+                        <img src="${imgSource}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150?text=Error'">
+                    </div>
+                    
+                    <div class="flex-1 min-w-0 flex flex-col justify-between">
+                        <div class="pr-6"> <!-- Padding right for delete button -->
+                            <h2 class="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">${item.name}</h2>
+                            <div class="text-xs text-gray-500 mt-1">
+                                <span class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">${item.orderId}</span> 
+                                ${item.sku}
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-end mt-2">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Qty</span>
+                                <span class="text-xl font-bold ${isReturned ? 'text-gray-500' : 'text-red-600'}">${item.qty}</span>
+                            </div>
+                            
+                            <button onclick="openScanModal(${item.id})" ${isReturned ? 'disabled' : ''} 
+                                class="px-4 py-2 rounded-lg text-sm font-semibold shadow-sm flex items-center gap-1.5 transition-colors
+                                ${isReturned ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}">
+                                ${isReturned ? 'Done' : 'Scan'}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Delete Button (Top Right) -->
+                    <button onclick="deleteProduct(${item.id})" class="absolute top-2 right-2 p-2 text-gray-300 hover:text-red-500 transition-colors" title="Delete Item">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+            
             lucide.createIcons();
-            document.querySelector('nav span').innerText = `${returnData.filter(i => i.status === 'pending').length} Items Pending`;
+            updateHeaderStatus();
         }
 
-        function openModal(id) {
-            const item = returnData.find(i => i.id === id);
-            if (!item) return;
-            currentActiveId = id;
-            document.getElementById('modal-title').innerText = item.name;
-            document.getElementById('modal-sku').innerText = `SKU: ${item.sku}`;
-            document.getElementById('modal-qty').innerText = item.qty;
-            document.getElementById('modal-barcode-img').src = item.barcode;
-            document.getElementById('modal').classList.remove('hidden');
-        }
-
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
-        function markCurrentAsReturned() {
-            if (currentActiveId) {
-                returnData.find(i => i.id === currentActiveId).status = 'returned';
-                renderCards();
-                closeModal();
+        function updateHeaderStatus() {
+            const count = returnData.filter(i => i.status === 'pending').length;
+            const badge = document.getElementById('status-badge');
+            
+            if (returnData.length === 0) {
+                 badge.innerText = "No Items";
+                 badge.className = "text-xs font-medium bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full border border-gray-200 hidden sm:inline-block";
+            } else if (count === 0) {
+                badge.innerText = "All Complete";
+                badge.className = "text-xs font-medium bg-green-100 text-green-700 px-2.5 py-1 rounded-full border border-green-200 hidden sm:inline-block";
+            } else {
+                badge.innerText = `${count} Items Pending`;
+                badge.className = "text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block";
             }
         }
+
+        function updateTabCounts() {
+            const allCount = returnData.length;
+            const pendingCount = returnData.filter(i => i.status === 'pending').length;
+            const returnedCount = returnData.filter(i => i.status === 'returned').length;
+
+            document.getElementById('filter-all').textContent = `All (${allCount})`;
+            document.getElementById('filter-pending').textContent = `Pending (${pendingCount})`;
+            document.getElementById('filter-returned').textContent = `Completed (${returnedCount})`;
+        }
+
+        // --- ACTION FUNCTIONS ---
+
+        function deleteProduct(id) {
+            if(confirm('Are you sure you want to delete this item?')) {
+                returnData = returnData.filter(item => item.id !== id);
+                saveData();
+                renderCards();
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('returnFlowData', JSON.stringify(returnData));
+        }
+
+        // --- SCAN MODAL FUNCTIONS ---
+
+        function openScanModal(id) {
+            const item = returnData.find(i => i.id === id);
+            if (!item || item.status === 'returned') return;
+
+            currentActiveId = id;
+
+            document.getElementById('scan-title').innerText = item.name;
+            document.getElementById('scan-sku').innerText = `SKU: ${item.sku}`;
+            document.getElementById('scan-qty').innerText = item.qty;
+            
+            const barcodeImg = document.getElementById('scan-barcode-img');
+            barcodeImg.src = item.barcode || ''; // Handle empty barcode
+            
+            // Show/Hide placeholder text based on if image exists
+            barcodeImg.nextElementSibling.style.display = item.barcode ? 'none' : 'flex';
+            barcodeImg.style.display = item.barcode ? 'block' : 'none';
+
+            document.getElementById('scan-modal').classList.remove('hidden');
+        }
+
+        function closeScanModal() {
+            document.getElementById('scan-modal').classList.add('hidden');
+            currentActiveId = null;
+        }
+
+        function markCurrentAsReturned() {
+            if (currentActiveId) {
+                const itemIndex = returnData.findIndex(i => i.id === currentActiveId);
+                if (itemIndex > -1) {
+                    returnData[itemIndex].status = 'returned';
+                    saveData();
+                    renderCards();
+                    closeScanModal();
+                }
+            }
+        }
+
+        // --- ADD PRODUCT MODAL FUNCTIONS ---
+
+        function openAddModal() {
+            // Reset form
+            document.getElementById('input-name').value = '';
+            document.getElementById('input-qty').value = '';
+            document.getElementById('input-sku').value = '';
+            document.getElementById('input-order').value = '';
+            
+            document.getElementById('input-image-url').value = '';
+            document.getElementById('preview-product').src = '';
+            document.getElementById('preview-product').classList.add('hidden');
+            document.querySelector('#preview-product-container i').classList.remove('hidden');
+            
+            document.getElementById('file-barcode').value = '';
+            document.getElementById('preview-barcode').src = '';
+            document.getElementById('preview-barcode').classList.add('hidden');
+
+            document.getElementById('add-modal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.add('hidden');
+        }
+
+        // File Handler: Converts image to Base64 (For Barcode)
+        function handleFileSelect(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById(previewId);
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    // Store the base64 string in a data attribute on the input for easy retrieval later
+                    input.setAttribute('data-base64', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // URL Preview Handler (For Product Image)
+        function handleUrlPreview(url) {
+            const preview = document.getElementById('preview-product');
+            const container = document.getElementById('preview-product-container');
+            const icon = container.querySelector('i');
+            
+            if (url && url.length > 5) {
+                preview.src = url;
+                preview.classList.remove('hidden');
+                icon.classList.add('hidden');
+            } else {
+                preview.src = '';
+                preview.classList.add('hidden');
+                icon.classList.remove('hidden');
+            }
+        }
+
+        function saveNewProduct() {
+            const name = document.getElementById('input-name').value;
+            const qty = document.getElementById('input-qty').value;
+            const sku = document.getElementById('input-sku').value;
+            const orderId = document.getElementById('input-order').value;
+            
+            // Validate required fields
+            if(!name || !qty) {
+                alert('Please enter at least a Name and Quantity.');
+                return;
+            }
+
+            // Get Image Data
+            const productImg = document.getElementById('input-image-url').value;
+            const barcodeImg = document.getElementById('file-barcode').getAttribute('data-base64');
+
+            const newProduct = {
+                id: Date.now(), 
+                name: name,
+                qty: qty,
+                sku: sku || '-',
+                orderId: orderId || '-',
+                image: productImg || '', // Save the URL string
+                barcode: barcodeImg || '', // Save the Base64 string
+                status: 'pending'
+            };
+
+            returnData.push(newProduct);
+            saveData();
+            // If filter was set to 'completed' and we added a new pending item, switch to pending so user can see it
+            if(currentFilter === 'returned') {
+                setFilter('pending');
+            } else {
+                renderCards();
+            }
+            closeAddModal();
+        }
+
+        // Initial app load
         renderCards();
     </script>
 </body>
