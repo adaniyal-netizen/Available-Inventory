@@ -55,7 +55,7 @@
         </div>
     </nav>
 
-    <!-- Filter Bar (New) -->
+    <!-- Filter Bar -->
     <div class="max-w-md mx-auto px-4 pt-4 pb-1">
         <div class="flex p-1 bg-gray-200 rounded-lg">
             <button onclick="setFilter('all')" id="filter-all" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all">All (0)</button>
@@ -138,7 +138,8 @@
                     
                     <div class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
                         <h3 class="text-lg font-bold text-gray-900">Add New Product</h3>
-                        <button onclick="closeAddModal()" class="text-gray-400 hover:text-gray-600">
+                        <!-- Top Cross Button -->
+                        <button onclick="closeAddModal()" class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100 transition-colors">
                             <i data-lucide="x" class="w-6 h-6"></i>
                         </button>
                     </div>
@@ -196,8 +197,11 @@
 
                     </div>
 
-                    <div class="p-5 border-t border-gray-100">
-                        <button onclick="saveNewProduct()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg active:scale-[0.98] transition-all">
+                    <div class="p-5 border-t border-gray-100 flex gap-3">
+                        <button onclick="closeAddModal()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-xl transition-all">
+                            Cancel
+                        </button>
+                        <button onclick="saveNewProduct()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg active:scale-[0.98] transition-all">
                             Save Product
                         </button>
                     </div>
