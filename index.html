@@ -1,528 +1,491 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d6d6d; -webkit-text-stroke: #6d6d6d}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6b0001; -webkit-text-stroke: #6b0001}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #fb0007; -webkit-text-stroke: #fb0007}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0000ff; -webkit-text-stroke: #0000ff}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b; min-height: 16.0px}
-    span.s1 {font-kerning: none; background-color: #ecf1f7}
-    span.s2 {font-kerning: none; color: #fb0007; background-color: #ecf1f7; -webkit-text-stroke: 0px #fb0007}
-    span.s3 {font-kerning: none; color: #2a2a2a; background-color: #ecf1f7; -webkit-text-stroke: 0px #2a2a2a}
-    span.s4 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s5 {font-kerning: none; color: #0000ff; background-color: #ecf1f7; -webkit-text-stroke: 0px #0000ff}
-    span.s6 {font-kerning: none; color: #6b0001; background-color: #ecf1f7; -webkit-text-stroke: 0px #6b0001}
-    span.s7 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s8 {font-kerning: none; color: #093c94; background-color: #ecf1f7; -webkit-text-stroke: 0px #093c94}
-    span.s9 {font-kerning: none; color: #137646; background-color: #ecf1f7; -webkit-text-stroke: 0px #137646}
-    span.s10 {font-kerning: none}
-    span.s11 {font-kerning: none; color: #4d5055; background-color: #ecf1f7; -webkit-text-stroke: 0px #4d5055}
-    span.s12 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s13 {font-kerning: none; color: #0e6e6d; background-color: #ecf1f7; -webkit-text-stroke: 0px #0e6e6d}
-    span.s14 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReturnFlow - In-Store Returns</title>
+    
+    <!-- Tailwind CSS (Styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .returned-card { 
+            opacity: 0.6; 
+            filter: grayscale(100%); 
+            background-color: #f3f4f6;
+        }
+        /* Custom scrollbar for modals */
+        .modal-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .modal-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">html</span><span class="s4"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s5">"en"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s5">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s4"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">title</span><span class="s3">&gt;</span><span class="s1">ReturnFlow - In-Store Returns</span><span class="s3">&lt;/</span><span class="s6">title</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Tailwind CSS (Styling) --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">script</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s6">script</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Lucide Icons --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">script</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/lucide@latest"</span><span class="s3">&gt;&lt;/</span><span class="s6">script</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Font --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"stylesheet"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">body</span><span class="s1"> { </span><span class="s2">font-family:</span><span class="s1"> </span><span class="s7">'Inter'</span><span class="s1">, </span><span class="s8">sans-serif</span><span class="s1">; }</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.returned-card</span><span class="s4"> {<span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">opacity:</span><span class="s1"> </span><span class="s9">0.6</span><span class="s1">;<span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">filter:</span><span class="s1"> </span><span class="s8">grayscale(</span><span class="s9">100%</span><span class="s8">)</span><span class="s1">;<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#f3f4f6</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">/* Custom scrollbar for modals */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.modal-scroll::-webkit-scrollbar</span><span class="s4"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">width:</span><span class="s1"> </span><span class="s9">8px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.modal-scroll::-webkit-scrollbar-track</span><span class="s4"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s8">#f1f1f1</span><span class="s1">;<span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.modal-scroll::-webkit-scrollbar-thumb</span><span class="s4"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s8">#d1d5db</span><span class="s1">;<span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s1"> </span><span class="s9">4px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s3">&lt;</span><span class="s6">body</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-50 min-h-screen pb-20"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Navbar --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">nav</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-white border-b border-gray-200 sticky top-0 z-10 px-4 py-3 shadow-sm"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"max-w-md mx-auto flex justify-between items-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex items-center gap-2 text-blue-600"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s1">"package-open"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-6 h-6"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">h1</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"font-bold text-lg text-gray-900 tracking-tight"</span><span class="s3">&gt;</span><span class="s4">ReturnFlow</span><span class="s3">&lt;/</span><span class="s6">h1</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex items-center gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"status-badge"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>Loading...</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"openAddModal()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition-colors"</span><span class="s4"> </span><span class="s2">title</span><span class="s3">=</span><span class="s1">"Add New Product"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"plus"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"w-5 h-5"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">nav</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Filter Bar --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"max-w-md mx-auto px-4 pt-4 pb-1"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex p-1 bg-gray-200 rounded-lg"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"setFilter('all')"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"filter-all"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all"</span><span class="s3">&gt;</span><span class="s4">All (0)</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"setFilter('pending')"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"filter-pending"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all"</span><span class="s3">&gt;</span><span class="s4">Pending (0)</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"setFilter('returned')"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"filter-returned"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all"</span><span class="s3">&gt;</span><span class="s4">Completed (0)</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Main Content Area --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">main</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"max-w-md mx-auto p-4 space-y-3"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"card-container"</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;!-- Javascript will inject the return cards here --&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">main</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Empty State (Hidden by default) --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"empty-state"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden max-w-md mx-auto p-8 text-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s1">"clipboard-list"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-8 h-8 text-gray-400"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-lg font-medium text-gray-900"</span><span class="s3">&gt;</span><span class="s4">No items found</span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-gray-500 mt-1 mb-6"</span><span class="s3">&gt;</span><span class="s1">Add products or change filter.</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"openAddModal()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-blue-600 font-medium hover:text-blue-800"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>+ Add New Product</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- SCANNER MODAL --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"scan-modal"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 z-50 hidden"</span><span class="s4"> </span><span class="s2">role</span><span class="s3">=</span><span class="s1">"dialog"</span><span class="s4"> </span><span class="s2">aria-modal</span><span class="s3">=</span><span class="s1">"true"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 bg-black/90 backdrop-blur-sm transition-opacity"</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"closeScanModal()"</span><span class="s3">&gt;&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 z-10 overflow-y-auto"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex min-h-full items-center justify-center p-4 text-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-xl text-left transform transition-all"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-blue-600 px-4 py-3 flex justify-between items-center text-white"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"font-semibold flex items-center gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"scan-barcode"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"w-5 h-5"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span><span class="s1"> Scan Item</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"closeScanModal()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hover:bg-blue-700 rounded p-1"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"x"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"w-6 h-6"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"p-5"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-lg font-bold text-gray-900 leading-tight"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"scan-title"</span><span class="s3">&gt;</span><span class="s4">Product Name</span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-sm text-gray-500 mb-4"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"scan-sku"</span><span class="s3">&gt;</span><span class="s4">SKU: 12345</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4 flex gap-3"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s4"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s1">"sun"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-5 h-5 text-yellow-600 flex-shrink-0"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-xs text-yellow-800"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">strong</span><span class="s3">&gt;</span><span class="s1">Max Brightness Required</span><span class="s3">&lt;/</span><span class="s6">strong</span><span class="s3">&gt;&lt;</span><span class="s6">br</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span>Turn screen brightness to 100%.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-2 border-dashed border-gray-300 rounded-xl p-2 mb-4 flex justify-center h-48 bg-white relative"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">img</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"scan-barcode-img"</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">""</span><span class="s4"> </span><span class="s2">alt</span><span class="s3">=</span><span class="s1">"Barcode"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"h-full object-contain z-10"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"absolute inset-0 flex items-center justify-center text-gray-400 text-xs z-0"</span><span class="s3">&gt;</span><span class="s4">No Barcode Image</span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex justify-between items-center border-t border-b border-gray-100 py-3 mb-5"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-gray-600 font-medium text-sm"</span><span class="s3">&gt;</span><span class="s1">Return Quantity</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-2xl font-bold text-red-600"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"scan-qty"</span><span class="s3">&gt;</span><span class="s4">0</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"markCurrentAsReturned()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"check-circle-2"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"w-5 h-5"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span>Mark as Returned</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- ADD PRODUCT MODAL --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"add-modal"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 z-50 hidden"</span><span class="s4"> </span><span class="s2">role</span><span class="s3">=</span><span class="s1">"dialog"</span><span class="s4"> </span><span class="s2">aria-modal</span><span class="s3">=</span><span class="s1">"true"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"closeAddModal()"</span><span class="s3">&gt;&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed inset-0 z-10 overflow-y-auto"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex min-h-full items-end sm:items-center justify-center sm:p-4 text-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-white w-full max-w-md sm:rounded-2xl rounded-t-2xl shadow-xl text-left transform transition-all h-[90vh] sm:h-auto flex flex-col"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"px-5 py-4 border-b border-gray-100 flex justify-between items-center"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">h3</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-lg font-bold text-gray-900"</span><span class="s3">&gt;</span><span class="s1">Add New Product</span><span class="s3">&lt;/</span><span class="s6">h3</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"closeAddModal()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-gray-400 hover:text-gray-600"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"x"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"w-6 h-6"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-5 overflow-y-auto modal-scroll flex-1 space-y-4"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s11">&lt;!-- Product Name --&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"block text-sm font-medium text-gray-700 mb-1"</span><span class="s3">&gt;</span><span class="s4">Product Name</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"input-name"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"e.g. Neutrogena Gel"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s1">&lt;!-- Grid for small inputs --&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"grid grid-cols-2 gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"block text-sm font-medium text-gray-700 mb-1"</span><span class="s3">&gt;</span><span class="s4">Quantity</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"input-qty"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"1"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"block text-sm font-medium text-gray-700 mb-1"</span><span class="s3">&gt;</span><span class="s4">SKU / Size</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"input-sku"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"1.7 oz"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"block text-sm font-medium text-gray-700 mb-1"</span><span class="s3">&gt;</span><span class="s4">Order ID</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"input-order"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"#1234"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s11">&lt;!-- Image URL Input --&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"pt-2"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"block text-sm font-medium text-gray-700 mb-2"</span><span class="s3">&gt;</span><span class="s1">Product Image (Address/URL)</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"flex gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"preview-product-container"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-200"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"image"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-gray-400"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">img</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"preview-product"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full h-full object-cover hidden"</span><span class="s4"> </span><span class="s2">onerror</span><span class="s3">=</span><span class="s1">"this.classList.add('hidden'); this.previousElementSibling.classList.remove('hidden');"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"flex-1"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"url"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"input-image-url"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none text-sm mb-1"</span><span class="s4"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"Paste image address here..."</span><span class="s4"> </span><span class="s2">oninput</span><span class="s3">=</span><span class="s1">"handleUrlPreview(this.value)"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-xs text-gray-500"</span><span class="s3">&gt;</span><span class="s1">Right-click an image online and select "Copy Image Address"</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"pt-2"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"block text-sm font-medium text-gray-700 mb-2"</span><span class="s3">&gt;</span><span class="s1">Barcode Image (Important)</span><span class="s3">&lt;/</span><span class="s6">label</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"flex items-center gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"preview-barcode-container"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">i</span><span class="s1"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s5">"scan-barcode"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-gray-400"</span><span class="s3">&gt;&lt;/</span><span class="s6">i</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">img</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"preview-barcode"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full h-full object-cover hidden"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">input</span><span class="s4"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"file"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"file-barcode"</span><span class="s4"> </span><span class="s2">accept</span><span class="s3">=</span><span class="s1">"image/*"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"</span><span class="s4"> </span><span class="s2">onchange</span><span class="s3">=</span><span class="s1">"handleFileSelect(this, 'preview-barcode')"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-5 border-t border-gray-100"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"saveNewProduct()"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg active:scale-[0.98] transition-all"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span>Save Product</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Logic --&gt;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- STATE MANAGEMENT ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">let</span><span class="s1"> returnData = </span><span class="s13">JSON</span><span class="s1">.parse(localStorage.getItem(</span><span class="s7">'returnFlowData'</span><span class="s1">)) || [];</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s12">let</span><span class="s4"> currentFilter = </span><span class="s7">'all'</span><span class="s4">; </span><span class="s1">// 'all', 'pending', 'returned'</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">let</span><span class="s1"> currentActiveId = </span><span class="s12">null</span><span class="s1">;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- FILTER FUNCTIONALITY ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> setFilter(filter) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>currentFilter = filter;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>updateFilterUI();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>renderCards();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> updateFilterUI() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> buttons = [</span><span class="s7">'all'</span><span class="s1">, </span><span class="s7">'pending'</span><span class="s1">, </span><span class="s7">'returned'</span><span class="s1">];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>buttons.forEach(btn =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> el = document.getElementById(</span><span class="s7">`filter-</span><span class="s1">${btn}</span><span class="s7">`</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">if</span><span class="s1"> (btn === currentFilter) {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                    </span>el.className = </span><span class="s1">'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all'</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>} </span><span class="s12">else</span><span class="s1"> {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                    </span>el.className = </span><span class="s1">'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all'</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- RENDER FUNCTIONS ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> renderCards() {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Update tab counts</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>updateTabCounts();</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> container = document.getElementById(</span><span class="s7">'card-container'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> emptyState = document.getElementById(</span><span class="s7">'empty-state'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>container.innerHTML = </span><span class="s7">''</span><span class="s1">; </span><span class="s11">// Clear existing</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Filter data based on current selection</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">let</span><span class="s1"> displayData = returnData;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (currentFilter === </span><span class="s7">'pending'</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>displayData = returnData.filter(item =&gt; item.status === </span><span class="s7">'pending'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s12">else</span><span class="s1"> </span><span class="s12">if</span><span class="s1"> (currentFilter === </span><span class="s7">'returned'</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>displayData = returnData.filter(item =&gt; item.status === </span><span class="s7">'returned'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (displayData.length === </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>container.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>emptyState.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>updateHeaderStatus();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">return</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>container.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>emptyState.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>displayData.forEach(item =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> isReturned = item.status === </span><span class="s7">'returned'</span><span class="s1">;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> card = document.createElement(</span><span class="s7">'div'</span><span class="s1">);</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span>card.className = </span><span class="s1">`bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex gap-4 transition-all relative group </span><span class="s4">${isReturned ? </span><span class="s1">'returned-card'</span><span class="s4"> : </span><span class="s1">'hover:border-blue-300'</span><span class="s4">}</span><span class="s1">`</span><span class="s4">;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">// Fallback image logic</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> imgSource = item.image || </span><span class="s7">'https://placehold.co/150?text=No+Img'</span><span class="s1">;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>card.innerHTML = </span><span class="s7">`</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100 relative"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;img src="</span><span class="s4">${imgSource}</span><span class="s1">" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150?text=Error'"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex-1 min-w-0 flex flex-col justify-between"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="pr-6"&gt; &lt;!-- Padding right for delete button --&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;h2 class="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight"&gt;</span><span class="s4">${item.name}</span><span class="s1">&lt;/h2&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div class="text-xs text-gray-500 mt-1"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium"&gt;</span><span class="s4">${item.orderId}</span><span class="s1">&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s4">${item.sku}</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="flex justify-between items-end mt-2"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider"&gt;Qty&lt;/span&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span class="text-xl font-bold </span><span class="s4">${isReturned ? </span><span class="s1">'text-gray-500'</span><span class="s4"> : </span><span class="s1">'text-red-600'</span><span class="s4">}</span><span class="s1">"&gt;</span><span class="s4">${item.qty}</span><span class="s1">&lt;/span&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p9"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button onclick="openScanModal(</span><span class="s4">${item.id}</span><span class="s1">)" </span><span class="s4">${isReturned ? </span><span class="s1">'disabled'</span><span class="s4"> : </span><span class="s1">''</span><span class="s4">}</span><span class="s1"><span class="Apple-converted-space"> </span></span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span>class="px-4 py-2 rounded-lg text-sm font-semibold shadow-sm flex items-center gap-1.5 transition-colors</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s4">${isReturned ? </span><span class="s1">'bg-gray-200 text-gray-500 cursor-not-allowed'</span><span class="s4"> : </span><span class="s1">'bg-blue-600 text-white hover:bg-blue-700'</span><span class="s4">}</span><span class="s1">"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s4">${isReturned ? </span><span class="s1">'Done'</span><span class="s4"> : </span><span class="s1">'Scan'</span><span class="s4">}</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;!-- Delete Button (Top Right) --&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button onclick="deleteProduct(</span><span class="s4">${item.id}</span><span class="s1">)" class="absolute top-2 right-2 p-2 text-gray-300 hover:text-red-500 transition-colors" title="Delete Item"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;i data-lucide="trash-2" class="w-4 h-4"&gt;&lt;/i&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>`</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>container.appendChild(card);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>lucide.createIcons();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>updateHeaderStatus();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> updateHeaderStatus() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> count = returnData.filter(i =&gt; i.status === </span><span class="s7">'pending'</span><span class="s1">).length;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> badge = document.getElementById(</span><span class="s7">'status-badge'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (returnData.length === </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                 </span>badge.innerText = </span><span class="s7">"No Items"</span><span class="s1">;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                 </span>badge.className = </span><span class="s1">"text-xs font-medium bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full border border-gray-200 hidden sm:inline-block"</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s12">else</span><span class="s1"> </span><span class="s12">if</span><span class="s1"> (count === </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>badge.innerText = </span><span class="s7">"All Complete"</span><span class="s1">;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span>badge.className = </span><span class="s1">"text-xs font-medium bg-green-100 text-green-700 px-2.5 py-1 rounded-full border border-green-200 hidden sm:inline-block"</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s12">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>badge.innerText = </span><span class="s7">`</span><span class="s1">${count}</span><span class="s7"> Items Pending`</span><span class="s1">;</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span>badge.className = </span><span class="s1">"text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block"</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> updateTabCounts() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> allCount = returnData.length;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> pendingCount = returnData.filter(i =&gt; i.status === </span><span class="s7">'pending'</span><span class="s1">).length;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> returnedCount = returnData.filter(i =&gt; i.status === </span><span class="s7">'returned'</span><span class="s1">).length;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'filter-all'</span><span class="s1">).textContent = </span><span class="s7">`All (</span><span class="s1">${allCount}</span><span class="s7">)`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'filter-pending'</span><span class="s1">).textContent = </span><span class="s7">`Pending (</span><span class="s1">${pendingCount}</span><span class="s7">)`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'filter-returned'</span><span class="s1">).textContent = </span><span class="s7">`Completed (</span><span class="s1">${returnedCount}</span><span class="s7">)`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- ACTION FUNCTIONS ---</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> deleteProduct(id) {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s4">(confirm(</span><span class="s1">'Are you sure you want to delete this item?'</span><span class="s4">)) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>returnData = returnData.filter(item =&gt; item.id !== id);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>saveData();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>renderCards();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> saveData() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>localStorage.setItem(</span><span class="s7">'returnFlowData'</span><span class="s1">, </span><span class="s13">JSON</span><span class="s1">.stringify(returnData));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- SCAN MODAL FUNCTIONS ---</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> openScanModal(id) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> item = returnData.find(i =&gt; i.id === id);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (!item || item.status === </span><span class="s7">'returned'</span><span class="s1">) </span><span class="s12">return</span><span class="s1">;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>currentActiveId = id;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'scan-title'</span><span class="s1">).innerText = item.name;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'scan-sku'</span><span class="s1">).innerText = </span><span class="s7">`SKU: </span><span class="s1">${item.sku}</span><span class="s7">`</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'scan-qty'</span><span class="s1">).innerText = item.qty;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> barcodeImg = document.getElementById(</span><span class="s7">'scan-barcode-img'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>barcodeImg.src = item.barcode || </span><span class="s7">''</span><span class="s1">; </span><span class="s11">// Handle empty barcode</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Show/Hide placeholder text based on if image exists</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>barcodeImg.nextElementSibling.style.display = item.barcode ? </span><span class="s7">'none'</span><span class="s1"> : </span><span class="s7">'flex'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>barcodeImg.style.display = item.barcode ? </span><span class="s7">'block'</span><span class="s1"> : </span><span class="s7">'none'</span><span class="s1">;</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'scan-modal'</span><span class="s1">).classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> closeScanModal() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'scan-modal'</span><span class="s1">).classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>currentActiveId = </span><span class="s12">null</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> markCurrentAsReturned() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (currentActiveId) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> itemIndex = returnData.findIndex(i =&gt; i.id === currentActiveId);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">if</span><span class="s1"> (itemIndex &gt; -</span><span class="s14">1</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>returnData[itemIndex].status = </span><span class="s7">'returned'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>saveData();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>renderCards();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>closeScanModal();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// --- ADD PRODUCT MODAL FUNCTIONS ---</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> openAddModal() {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Reset form</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'input-name'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'input-qty'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'input-sku'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'input-order'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'input-image-url'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'preview-product'</span><span class="s1">).src = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'preview-product'</span><span class="s1">).classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.querySelector(</span><span class="s7">'#preview-product-container i'</span><span class="s1">).classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'file-barcode'</span><span class="s1">).value = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'preview-barcode'</span><span class="s1">).src = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'preview-barcode'</span><span class="s1">).classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'add-modal'</span><span class="s1">).classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> closeAddModal() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s7">'add-modal'</span><span class="s1">).classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// File Handler: Converts image to Base64 (For Barcode)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> handleFileSelect(input, previewId) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> file = input.files[</span><span class="s14">0</span><span class="s1">];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (file) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">const</span><span class="s1"> reader = </span><span class="s12">new</span><span class="s1"> </span><span class="s13">FileReader</span><span class="s1">();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>reader.onload = </span><span class="s12">function</span><span class="s1">(e) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s12">const</span><span class="s1"> preview = document.getElementById(previewId);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>preview.src = e.target.result;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>preview.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">// Store the base64 string in a data attribute on the input for easy retrieval later</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>input.setAttribute(</span><span class="s7">'data-base64'</span><span class="s1">, e.target.result);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>};</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>reader.readAsDataURL(file);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// URL Preview Handler (For Product Image)</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> handleUrlPreview(url) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> preview = document.getElementById(</span><span class="s7">'preview-product'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> container = document.getElementById(</span><span class="s7">'preview-product-container'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> icon = container.querySelector(</span><span class="s7">'i'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1"> (url &amp;&amp; url.length &gt; </span><span class="s14">5</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>preview.src = url;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>preview.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>icon.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s12">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>preview.src = </span><span class="s7">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>preview.classList.add(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>icon.classList.remove(</span><span class="s7">'hidden'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s12">function</span><span class="s1"> saveNewProduct() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> name = document.getElementById(</span><span class="s7">'input-name'</span><span class="s1">).value;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> qty = document.getElementById(</span><span class="s7">'input-qty'</span><span class="s1">).value;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> sku = document.getElementById(</span><span class="s7">'input-sku'</span><span class="s1">).value;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> orderId = document.getElementById(</span><span class="s7">'input-order'</span><span class="s1">).value;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Validate required fields</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1">(!name || !qty) {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">                </span>alert(</span><span class="s1">'Please enter at least a Name and Quantity.'</span><span class="s4">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">return</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Get Image Data</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> productImg = document.getElementById(</span><span class="s7">'input-image-url'</span><span class="s1">).value;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> barcodeImg = document.getElementById(</span><span class="s7">'file-barcode'</span><span class="s1">).getAttribute(</span><span class="s7">'data-base64'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">const</span><span class="s1"> newProduct = {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>id: </span><span class="s13">Date</span><span class="s1">.now(),<span class="Apple-converted-space"> </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>name: name,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>qty: qty,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>sku: sku || </span><span class="s7">'-'</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>orderId: orderId || </span><span class="s7">'-'</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>image: productImg || </span><span class="s7">''</span><span class="s1">, </span><span class="s11">// Save the URL string</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>barcode: barcodeImg || </span><span class="s7">''</span><span class="s1">, </span><span class="s11">// Save the Base64 string</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>status: </span><span class="s7">'pending'</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>returnData.push(newProduct);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>saveData();</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// If filter was set to 'completed' and we added a new pending item, switch to pending so user can see it</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s12">if</span><span class="s1">(currentFilter === </span><span class="s7">'returned'</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>setFilter(</span><span class="s7">'pending'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>} </span><span class="s12">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>renderCards();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>closeAddModal();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s10"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// Initial app load</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>renderCards();</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
+<body class="bg-gray-50 min-h-screen pb-20">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 py-3 shadow-sm">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2 text-blue-600">
+                <i data-lucide="package-open" class="w-6 h-6"></i>
+                <h1 class="font-bold text-lg text-gray-900 tracking-tight">ReturnFlow</h1>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <span id="status-badge" class="text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block">
+                    Loading...
+                </span>
+                <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition-colors" title="Add New Product">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filter Bar (New) -->
+    <div class="max-w-md mx-auto px-4 pt-4 pb-1">
+        <div class="flex p-1 bg-gray-200 rounded-lg">
+            <button onclick="setFilter('all')" id="filter-all" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all">All (0)</button>
+            <button onclick="setFilter('pending')" id="filter-pending" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">Pending (0)</button>
+            <button onclick="setFilter('returned')" id="filter-returned" class="flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">Completed (0)</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="max-w-md mx-auto p-4 space-y-3" id="card-container">
+        <!-- Javascript will inject the return cards here -->
+    </main>
+    
+    <!-- Empty State (Hidden by default) -->
+    <div id="empty-state" class="hidden max-w-md mx-auto p-8 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+            <i data-lucide="clipboard-list" class="w-8 h-8 text-gray-400"></i>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900">No items found</h3>
+        <p class="text-gray-500 mt-1 mb-6">Add products or change filter.</p>
+        <button onclick="openAddModal()" class="text-blue-600 font-medium hover:text-blue-800">
+            + Add New Product
+        </button>
+    </div>
+
+    <!-- SCANNER MODAL -->
+    <div id="scan-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/90 backdrop-blur-sm transition-opacity" onclick="closeScanModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-xl text-left transform transition-all">
+                    
+                    <div class="bg-blue-600 px-4 py-3 flex justify-between items-center text-white">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <i data-lucide="scan-barcode" class="w-5 h-5"></i> Scan Item
+                        </h3>
+                        <button onclick="closeScanModal()" class="hover:bg-blue-700 rounded p-1">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight" id="scan-title">Product Name</h3>
+                        <p class="text-sm text-gray-500 mb-4" id="scan-sku">SKU: 12345</p>
+
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4 flex gap-3">
+                            <i data-lucide="sun" class="w-5 h-5 text-yellow-600 flex-shrink-0"></i>
+                            <div class="text-xs text-yellow-800">
+                                <strong>Max Brightness Required</strong><br>
+                                Turn screen brightness to 100%.
+                            </div>
+                        </div>
+
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-2 mb-4 flex justify-center h-48 bg-white relative">
+                            <img id="scan-barcode-img" src="" alt="Barcode" class="h-full object-contain z-10">
+                            <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-xs z-0">No Barcode Image</div>
+                        </div>
+
+                        <div class="flex justify-between items-center border-t border-b border-gray-100 py-3 mb-5">
+                            <span class="text-gray-600 font-medium text-sm">Return Quantity</span>
+                            <span class="text-2xl font-bold text-red-600" id="scan-qty">0</span>
+                        </div>
+
+                        <button onclick="markCurrentAsReturned()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            Mark as Returned
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeAddModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end sm:items-center justify-center sm:p-4 text-center">
+                <div class="bg-white w-full max-w-md sm:rounded-2xl rounded-t-2xl shadow-xl text-left transform transition-all h-[90vh] sm:h-auto flex flex-col">
+                    
+                    <div class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-gray-900">Add New Product</h3>
+                        <button onclick="closeAddModal()" class="text-gray-400 hover:text-gray-600">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-5 overflow-y-auto modal-scroll flex-1 space-y-4">
+                        
+                        <!-- Product Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                            <input type="text" id="input-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="e.g. Neutrogena Gel">
+                        </div>
+
+                        <!-- Grid for small inputs -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                                <input type="number" id="input-qty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="1">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">SKU / Size</label>
+                                <input type="text" id="input-sku" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="1.7 oz">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Order ID</label>
+                            <input type="text" id="input-order" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none" placeholder="#1234">
+                        </div>
+
+                        <!-- Image URL Input -->
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Product Image (Address/URL)</label>
+                            <div class="flex gap-4">
+                                <div id="preview-product-container" class="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden border border-gray-200">
+                                    <i data-lucide="image" class="text-gray-400"></i>
+                                    <img id="preview-product" class="w-full h-full object-cover hidden" onerror="this.classList.add('hidden'); this.previousElementSibling.classList.remove('hidden');">
+                                </div>
+                                <div class="flex-1">
+                                    <input type="url" id="input-image-url" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 outline-none text-sm mb-1" placeholder="Paste image address here..." oninput="handleUrlPreview(this.value)">
+                                    <p class="text-xs text-gray-500">Right-click an image online and select "Copy Image Address"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Barcode Image (Important)</label>
+                            <div class="flex items-center gap-4">
+                                <div id="preview-barcode-container" class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
+                                    <i data-lucide="scan-barcode" class="text-gray-400"></i>
+                                    <img id="preview-barcode" class="w-full h-full object-cover hidden">
+                                </div>
+                                <input type="file" id="file-barcode" accept="image/*" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" onchange="handleFileSelect(this, 'preview-barcode')">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-5 border-t border-gray-100">
+                        <button onclick="saveNewProduct()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg active:scale-[0.98] transition-all">
+                            Save Product
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // --- STATE MANAGEMENT ---
+        let returnData = JSON.parse(localStorage.getItem('returnFlowData')) || [];
+        let currentFilter = 'all'; // 'all', 'pending', 'returned'
+        let currentActiveId = null;
+
+        // --- FILTER FUNCTIONALITY ---
+        function setFilter(filter) {
+            currentFilter = filter;
+            updateFilterUI();
+            renderCards();
+        }
+
+        function updateFilterUI() {
+            const buttons = ['all', 'pending', 'returned'];
+            buttons.forEach(btn => {
+                const el = document.getElementById(`filter-${btn}`);
+                if (btn === currentFilter) {
+                    el.className = 'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md bg-white shadow-sm text-gray-900 transition-all';
+                } else {
+                    el.className = 'flex-1 py-1.5 text-xs sm:text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all';
+                }
+            });
+        }
+
+        // --- RENDER FUNCTIONS ---
+        function renderCards() {
+            // Update tab counts
+            updateTabCounts();
+
+            const container = document.getElementById('card-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            container.innerHTML = ''; // Clear existing
+
+            // Filter data based on current selection
+            let displayData = returnData;
+            if (currentFilter === 'pending') {
+                displayData = returnData.filter(item => item.status === 'pending');
+            } else if (currentFilter === 'returned') {
+                displayData = returnData.filter(item => item.status === 'returned');
+            }
+
+            if (displayData.length === 0) {
+                container.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                updateHeaderStatus();
+                return;
+            }
+
+            container.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            displayData.forEach(item => {
+                const isReturned = item.status === 'returned';
+                
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex gap-4 transition-all relative group ${isReturned ? 'returned-card' : 'hover:border-blue-300'}`;
+                
+                // Fallback image logic
+                const imgSource = item.image || 'https://placehold.co/150?text=No+Img';
+
+                card.innerHTML = `
+                    <div class="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100 relative">
+                        <img src="${imgSource}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150?text=Error'">
+                    </div>
+                    
+                    <div class="flex-1 min-w-0 flex flex-col justify-between">
+                        <div class="pr-6"> <!-- Padding right for delete button -->
+                            <h2 class="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">${item.name}</h2>
+                            <div class="text-xs text-gray-500 mt-1">
+                                <span class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">${item.orderId}</span> 
+                                ${item.sku}
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-end mt-2">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Qty</span>
+                                <span class="text-xl font-bold ${isReturned ? 'text-gray-500' : 'text-red-600'}">${item.qty}</span>
+                            </div>
+                            
+                            <button onclick="openScanModal(${item.id})" ${isReturned ? 'disabled' : ''} 
+                                class="px-4 py-2 rounded-lg text-sm font-semibold shadow-sm flex items-center gap-1.5 transition-colors
+                                ${isReturned ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}">
+                                ${isReturned ? 'Done' : 'Scan'}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Delete Button (Top Right) -->
+                    <button onclick="deleteProduct(${item.id})" class="absolute top-2 right-2 p-2 text-gray-300 hover:text-red-500 transition-colors" title="Delete Item">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+            
+            lucide.createIcons();
+            updateHeaderStatus();
+        }
+
+        function updateHeaderStatus() {
+            const count = returnData.filter(i => i.status === 'pending').length;
+            const badge = document.getElementById('status-badge');
+            
+            if (returnData.length === 0) {
+                 badge.innerText = "No Items";
+                 badge.className = "text-xs font-medium bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full border border-gray-200 hidden sm:inline-block";
+            } else if (count === 0) {
+                badge.innerText = "All Complete";
+                badge.className = "text-xs font-medium bg-green-100 text-green-700 px-2.5 py-1 rounded-full border border-green-200 hidden sm:inline-block";
+            } else {
+                badge.innerText = `${count} Items Pending`;
+                badge.className = "text-xs font-medium bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100 hidden sm:inline-block";
+            }
+        }
+
+        function updateTabCounts() {
+            const allCount = returnData.length;
+            const pendingCount = returnData.filter(i => i.status === 'pending').length;
+            const returnedCount = returnData.filter(i => i.status === 'returned').length;
+
+            document.getElementById('filter-all').textContent = `All (${allCount})`;
+            document.getElementById('filter-pending').textContent = `Pending (${pendingCount})`;
+            document.getElementById('filter-returned').textContent = `Completed (${returnedCount})`;
+        }
+
+        // --- ACTION FUNCTIONS ---
+
+        function deleteProduct(id) {
+            if(confirm('Are you sure you want to delete this item?')) {
+                returnData = returnData.filter(item => item.id !== id);
+                saveData();
+                renderCards();
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('returnFlowData', JSON.stringify(returnData));
+        }
+
+        // --- SCAN MODAL FUNCTIONS ---
+
+        function openScanModal(id) {
+            const item = returnData.find(i => i.id === id);
+            if (!item || item.status === 'returned') return;
+
+            currentActiveId = id;
+
+            document.getElementById('scan-title').innerText = item.name;
+            document.getElementById('scan-sku').innerText = `SKU: ${item.sku}`;
+            document.getElementById('scan-qty').innerText = item.qty;
+            
+            const barcodeImg = document.getElementById('scan-barcode-img');
+            barcodeImg.src = item.barcode || ''; // Handle empty barcode
+            
+            // Show/Hide placeholder text based on if image exists
+            barcodeImg.nextElementSibling.style.display = item.barcode ? 'none' : 'flex';
+            barcodeImg.style.display = item.barcode ? 'block' : 'none';
+
+            document.getElementById('scan-modal').classList.remove('hidden');
+        }
+
+        function closeScanModal() {
+            document.getElementById('scan-modal').classList.add('hidden');
+            currentActiveId = null;
+        }
+
+        function markCurrentAsReturned() {
+            if (currentActiveId) {
+                const itemIndex = returnData.findIndex(i => i.id === currentActiveId);
+                if (itemIndex > -1) {
+                    returnData[itemIndex].status = 'returned';
+                    saveData();
+                    renderCards();
+                    closeScanModal();
+                }
+            }
+        }
+
+        // --- ADD PRODUCT MODAL FUNCTIONS ---
+
+        function openAddModal() {
+            // Reset form
+            document.getElementById('input-name').value = '';
+            document.getElementById('input-qty').value = '';
+            document.getElementById('input-sku').value = '';
+            document.getElementById('input-order').value = '';
+            
+            document.getElementById('input-image-url').value = '';
+            document.getElementById('preview-product').src = '';
+            document.getElementById('preview-product').classList.add('hidden');
+            document.querySelector('#preview-product-container i').classList.remove('hidden');
+            
+            document.getElementById('file-barcode').value = '';
+            document.getElementById('preview-barcode').src = '';
+            document.getElementById('preview-barcode').classList.add('hidden');
+
+            document.getElementById('add-modal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.add('hidden');
+        }
+
+        // File Handler: Converts image to Base64 (For Barcode)
+        function handleFileSelect(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById(previewId);
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    // Store the base64 string in a data attribute on the input for easy retrieval later
+                    input.setAttribute('data-base64', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // URL Preview Handler (For Product Image)
+        function handleUrlPreview(url) {
+            const preview = document.getElementById('preview-product');
+            const container = document.getElementById('preview-product-container');
+            const icon = container.querySelector('i');
+            
+            if (url && url.length > 5) {
+                preview.src = url;
+                preview.classList.remove('hidden');
+                icon.classList.add('hidden');
+            } else {
+                preview.src = '';
+                preview.classList.add('hidden');
+                icon.classList.remove('hidden');
+            }
+        }
+
+        function saveNewProduct() {
+            const name = document.getElementById('input-name').value;
+            const qty = document.getElementById('input-qty').value;
+            const sku = document.getElementById('input-sku').value;
+            const orderId = document.getElementById('input-order').value;
+            
+            // Validate required fields
+            if(!name || !qty) {
+                alert('Please enter at least a Name and Quantity.');
+                return;
+            }
+
+            // Get Image Data
+            const productImg = document.getElementById('input-image-url').value;
+            const barcodeImg = document.getElementById('file-barcode').getAttribute('data-base64');
+
+            const newProduct = {
+                id: Date.now(), 
+                name: name,
+                qty: qty,
+                sku: sku || '-',
+                orderId: orderId || '-',
+                image: productImg || '', // Save the URL string
+                barcode: barcodeImg || '', // Save the Base64 string
+                status: 'pending'
+            };
+
+            returnData.push(newProduct);
+            saveData();
+            // If filter was set to 'completed' and we added a new pending item, switch to pending so user can see it
+            if(currentFilter === 'returned') {
+                setFilter('pending');
+            } else {
+                renderCards();
+            }
+            closeAddModal();
+        }
+
+        // Initial app load
+        renderCards();
+    </script>
 </body>
 </html>
